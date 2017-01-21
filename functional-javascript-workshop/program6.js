@@ -1,10 +1,14 @@
-function checkUsersValid(goodUsers) {
-  return function allUsersValid(submittedUsers) {
-    return submittedUsers.every(function(submittedUser){
-      return goodUsers.some(function(goodUser){
-        return submittedUser.id == goodUser.id
-      });
-    });
-  };
+function countWords(inputWords) {
+  var result = {};
+  inputWords.reduce(function(previousValue, currentValue,index,array){
+    if(Object.keys(result).indexOf(currentValue) != -1){
+      result[currentValue] = result[currentValue] + 1;
+    } else {
+      result[currentValue] = 1;
+    }
+  }, {});
+
+  return result;
 }
-module.exports = checkUsersValid
+
+module.exports = countWords

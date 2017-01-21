@@ -1,12 +1,10 @@
-function isShortMsg(value) {
-  return value.length <= 50;
+function checkUsersValid(goodUsers) {
+  return function allUsersValid(submittedUsers) {
+    return submittedUsers.every(function(submittedUser){
+      return goodUsers.some(function(goodUser){
+        return submittedUser.id == goodUser.id
+      });
+    });
+  };
 }
-
-function getShortMessages(messages) {
-      return messages.map(function(msg){
-          return msg.message
-      }).filter(isShortMsg);
-
-}
-
-module.exports = getShortMessages
+module.exports = checkUsersValid
